@@ -1,14 +1,19 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - mo-hamouda
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - mo-hamouda/Terraform_AWS
+  - mo-hamouda/Jenkins-CI-CD
+  - mo-hamouda/GCP-Python-Counter-App-Deployment
+  - mo-hamouda/Udacity-Final-Project
+  - mo-hamouda/App-Deployment-on-K8S
+  - mo-hamouda/Terraform_AWS
+  - mo-hamouda/DevOps-Interview-Questions-for-Juniors
+  - mo-hamouda/circleci-demo-javascript-express
+  - mo-hamouda/Graduation_Project_App
+  - mo-hamouda/Graduation_Project_Infra
+  - mo-hamouda/Terraform-Project 
+  - mo-hamouda/CI-CD_Jenkins 
+  - mo-hamouda/Helm_Jenkins_K8s
