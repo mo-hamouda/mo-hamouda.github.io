@@ -1,0 +1,63 @@
+name: Terraform GCP Authentication Test
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for requesting the JWT for workload identity federation
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Setup auth with GCP Workload Identity Federation
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
+          service_account: 'my-service-account@rased-415808.iam.gserviceaccount.com'
+
+      # Setup gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      # Setup Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.0.11
+
+      # Create simple Terraform file for bucket creation
+      - name: Create Terraform file
+        run: |
+          cat > main.tf << 'EOL'
+          provider "google" {
+            project = "rased-415808"
+            region  = "us-central1"
+          }
+
+          resource "google_storage_bucket" "test_bucket" {
+            name     = "test-bucket-mo-hamouda-unique-name"
+            location = "US"
+            force_destroy = true
+            
+            uniform_bucket_level_access = true
+          }
+          EOL
+
+      # Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # Run Terraform Plan
+      - name: Terraform Plan
+        run: terraform plan
