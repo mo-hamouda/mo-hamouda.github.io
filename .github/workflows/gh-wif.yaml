@@ -65,9 +65,11 @@ jobs:
             echo "Server URL: ${{ github.server_url }}"
             gcloud auth list
             gcloud config list
+
       - name: Test Storage Access
         run: |
            gcloud storage ls
+           
       # Run Terraform Plan
       - name: Terraform Plan
         run: terraform apply --auto-approve
