@@ -60,5 +60,6 @@ jobs:
 
       # Run Terraform Plan
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform apply --auto-approve
+
 
