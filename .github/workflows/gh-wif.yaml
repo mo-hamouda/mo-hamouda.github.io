@@ -23,7 +23,7 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: 'projects/rased-415808/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
+          workload_identity_provider: 'projects/rased-415808/locations/global/workloadIdentityPools/gh-pooll/providers/gh-provider'
           service_account: 'gh-service-account@rased-415808.iam.gserviceaccount.com'
 
       # Setup gcloud CLI
@@ -61,5 +61,4 @@ jobs:
       # Run Terraform Plan
       - name: Terraform Plan
         run: terraform apply --auto-approve
-
 
