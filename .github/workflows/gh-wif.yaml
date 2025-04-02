@@ -57,6 +57,14 @@ jobs:
       # Initialize Terraform
       - name: Terraform Init
         run: terraform init
+    
+      - name: Debug Identity Info
+        run: |
+            echo "Repo: ${{ github.repository }}"
+            echo "Actor: ${{ github.actor }}"
+            echo "Server URL: ${{ github.server_url }}"
+            gcloud auth list
+            gcloud config list
 
       # Run Terraform Plan
       - name: Terraform Plan
